@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>College Connect - Home</title>
+    <link rel="stylesheet" href="home.css" />
+
+ 
+</head>
+<body>
+  <!-- Skip link -->
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <div class="page">
+    <!-- Header / Nav landmark -->
+    <header>
+      <div class="nav container" role="navigation" aria-label="Main navigation">
+        <div class="brand">
+          <a href="index.html" aria-label="College Connect home">
+          </a>
+          <div class="title">College Connect</div>
+        </div>
+
+        <nav aria-label="Primary" role="navigation">
+          <ul>
+            <li><a href="index.html" aria-current="page">Home</a></li>
+            <li><a href="updates.html">Updates</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="controls">
+          <!-- Accessible toggle for dark mode -->
+          <button id="darkToggle"
+                  class="dark-btn"
+                  aria-pressed="false"
+                  aria-label="Toggle dark mode">
+            🌙
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main landmark -->
+    <main id="main" tabindex="-1">
+      <!-- Welcome (use H2 for main sections; H1 kept for page title) -->
+      <section class="welcome container" aria-labelledby="welcome-heading">
+        <h1 id="page-title">Welcome to COE</h1>
+       
+        <p>Your hub for campus highlights, events, and the latest announcements — built with clean, beginner-friendly HTML & CSS.</p>
+   <img src="images.png" width="540" height="160" alt="College Connect logo" />
+        <a class="btn" href="updates.html">See Updates</a>
+      </section>
+ 
+
+
+      <!-- Highlights -->
+      <section class="highlight container" aria-labelledby="highlights-heading">
+        <h2 id="highlights-heading">Highlights</h2>
+
+        <div class="menus" role="list">
+          <article class="menu-box" role="article" aria-labelledby="events-heading" tabindex="0">
+            <h3 id="events-heading">Events</h3>
+            <ul>
+              <li>Weekly Tech Talks</li>
+              <li>Student Hackathons</li>
+              <li>Career Fairs</li>
+            </ul>
+          </article>
+
+          <article class="menu-box" role="article" aria-labelledby="clubs-heading" tabindex="0">
+            <h3 id="clubs-heading">Clubs</h3>
+            <ul>
+              <li>AI & Robotics</li>
+              <li>Web Dev Circle</li>
+              <li>Design Guild</li>
+            </ul>
+          </article>
+
+          <article class="menu-box" role="article" aria-labelledby="facilities-heading" tabindex="0">
+            <h3 id="facilities-heading">Facilities</h3>
+            <ul>
+              <li>Library — quiet & group study zones</li>
+              <li>Labs — modern hardware & software</li>
+              <li>Cafe — healthy snacks & drinks</li>
+            </ul>
+          </article>
+        </div> <!-- .menus -->
+
+        <!-- Stay Connected -->
+        <section class="social" aria-labelledby="stay-connected">
+          <h2 id="stay-connected">Stay Connected</h2>
+
+          <div class="icons" role="navigation" aria-label="Social links">
+            <!-- Use buttons/links with aria-label for screen readers -->
+            <a class="icon-btn" href="mailto:hello@collegeconnect.example" aria-label="Send email">
+              📧
+            </a>
+
+            <a class="icon-btn" href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="College Connect on Twitter">
+              🐦
+            </a>
+
+            <a class="icon-btn" href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="College Connect on Facebook">
+              👤
+            </a>
+          </div>
+        </section>
+
+        <!-- Announcement -->
+        <section class="announcement container" aria-labelledby="announce-heading">
+          <h2 id="announce-heading">Get the Starter Template</h2>
+          <p>Grab a starter template for your next project — lightweight, accessible, and easy to extend.</p>
+          <a class="btn" href="starter-template.zip" aria-label="Download starter template">Browse Announcement</a>
+        </section>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="wrap">
+        <p>© 2025 College Connect — By the Developer Fatimah Hassan</p>
+        <nav aria-label="Footer links">
+          <a href="updates.html">Go to Updates →</a>
+        </nav>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ================== JavaScript ================== -->
+  <script>
+    // Dark mode toggle (accessible)
+    (function() {
+      const toggle = document.getElementById('darkToggle');
+      // remember preference in localStorage
+      const saved = localStorage.getItem('cc-dark') === 'true';
+      if (saved) {
+        document.body.classList.add('dark');
+        toggle.setAttribute('aria-pressed', 'true');
+        toggle.textContent = '☀️';
+      } else {
+        toggle.setAttribute('aria-pressed', 'false');
+        toggle.textContent = '🌙';
+      }
+
+      toggle.addEventListener('click', () => {
+        const isDark = document.body.classList.toggle('dark');
+        toggle.setAttribute('aria-pressed', String(isDark));
+        toggle.textContent = isDark ? '☀️' : '🌙';
+        try { localStorage.setItem('cc-dark', String(isDark)); } catch (e) { /* ignore */ }
+      });
+
+      // allow keyboard users to jump to main after clicking skip link
+      const skipLink = document.querySelector('.skip-link');
+      skipLink.addEventListener('click', (e) => {
+        const target = document.getElementById('main');
+        if (target) {
+          setTimeout(() => target.focus(), 10);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
